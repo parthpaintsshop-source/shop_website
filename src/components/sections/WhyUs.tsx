@@ -14,6 +14,7 @@ export default function WhyUs() {
         <p className={styles.eyebrow}>04 / A place to begin</p>
         <h2 id="about-title" data-editorial-title>Your ideas.<br /><em>Our starting point.</em></h2>
         <p className={styles.aboutDescription}>A room you love. A shade you keep coming back to. Bring your inspiration to Parth Paints and make the next step a conversation.</p>
+        <p className={styles.aboutDescription}><strong>10+ years of experience.</strong><br />Serving trust.</p>
         <div className={styles.storeProof}><p><span>Your local destination</span>Aspur, Dungarpur</p><p><span>Paints you know</span>{STORE_INFO.tagline}</p></div>
         <p className={styles.aboutNote}>Bring room photos and shortlisted colours. Ask us about current stock, finishes and suitable preparation before you decide.</p>
         <a href="#contact" className={styles.darkLink}>Come explore the possibilities <span aria-hidden="true">↗</span></a>
