@@ -35,7 +35,7 @@ export default function OwnerIntroduction() {
     <div className={styles.composition}>
       <figure className={styles.portrait}>
         <div className={styles.panel} data-owner-panel aria-hidden="true" />
-        <div className={styles.frame} data-owner-frame><div className={styles.photo} data-owner-portrait><Image src="/images/owner.jpeg" alt="Mr. Gopal Sevak, proprietor of Parth Paints" fill sizes="(max-width: 799px) 82vw, 37vw" /></div></div>
+        <div className={styles.frame} data-owner-frame><div className={styles.photo} data-owner-portrait><Image src="/images/owner.jpeg" alt="Mr. Gopal Sevak, proprietor of Parth Paints" fill sizes="(max-width: 799px) 262px, 336px" /></div></div>
         <div className={styles.swatches} data-owner-swatches aria-hidden="true"><i /><i /><i /></div>
         <figcaption>Mr. Gopal Sevak <span>Proprietor, Parth Paints</span></figcaption>
       </figure>
