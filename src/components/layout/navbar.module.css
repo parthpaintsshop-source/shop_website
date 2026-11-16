@@ -1,0 +1,7 @@
+﻿/* Only the transparent navigation over the hero changes colour. */
+.overHero { border-bottom: 1px solid #faf6f126; }
+.overHero a { color: #faf6f1; }
+.overHero a > span { color: inherit; }
+.overHero button > span { background-color: #faf6f1; }
+.overHero a:focus-visible, .overHero button:focus-visible { outline: 2px solid #faf6f1; outline-offset: 5px; }
+.overHero a:hover { color: #e9d7bc; }

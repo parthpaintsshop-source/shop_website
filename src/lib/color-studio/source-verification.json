@@ -1,0 +1,41 @@
+{
+  "verifiedOn": "2026-11-16",
+  "shades": [
+    {
+      "slug": "healing-herbs",
+      "hex": "#E9EDE1",
+      "code": "W-215",
+      "sku": "Healing Herbs-W-215"
+    },
+    {
+      "slug": "birthday-kiss",
+      "hex": "#f0e3e0",
+      "code": "4111",
+      "sku": "Birthday Kiss-4111"
+    },
+    {
+      "slug": "foam-white",
+      "hex": "#F5EADB",
+      "code": "W-161",
+      "sku": "Foam White-W-161"
+    },
+    {
+      "slug": "red-ranch",
+      "hex": "#BA5749",
+      "code": "4573",
+      "sku": "Red Ranch -4573"
+    },
+    {
+      "slug": "limelite",
+      "hex": "#c7e4b6",
+      "code": "4393",
+      "sku": "Limelite-4393"
+    },
+    {
+      "slug": "grape-popsicle",
+      "hex": "#9C6EA9",
+      "code": "2293",
+      "sku": "Grape Popsicle-2293"
+    }
+  ]
+}

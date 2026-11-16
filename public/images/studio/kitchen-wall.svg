@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1650" height="1200" viewBox="0 0 1650 1200">
+  <g transform="matrix(1.5 0 0 1.5 -750 -270)">
+    <!-- Kitchen/dining plaster only: excludes ceiling, hood, window, cabinets and seating. -->
+    <path fill="white" fill-rule="evenodd" d="M396 284L761 357V413H795V451L594 450V498H593V538L518 541L521 514Q509 512 499 519L481 540L442 542L441 524L396 522Z M558 397A50 50 0 1 0 458 397A50 50 0 1 0 558 397Z"/>
+  </g>
+</svg>
