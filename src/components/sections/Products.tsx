@@ -30,6 +30,10 @@ export default function Products() {
           <p className={styles.finePrint}>Collections shown for discovery. Store availability and product suitability require confirmation. <a href={NEROLAC.website} target="_blank" rel="noreferrer">Official Nerolac product information ↗</a></p>
         </div>
       </div>
+      <aside className={styles.woodFinishes} aria-labelledby="wood-finishes-title">
+        <div><p className={styles.eyebrow}>Also available in store</p><h3 id="wood-finishes-title">Wood finishes & polish</h3><p>Deco, melamine, and glossy or matt finishes for your woodwork.</p></div>
+        <a className={styles.textLink} href={inquiryHref('wood finishes and polish — deco, glossy, matt and melamine')}>Ask about wood finishes <span aria-hidden="true">↗</span></a>
+      </aside>
     </section>
   );
 }
