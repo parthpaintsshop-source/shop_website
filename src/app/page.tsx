@@ -5,6 +5,7 @@ import Transformation from '@/components/sections/Transformation';
 import Products from '@/components/sections/Products';
 import Gallery from '@/components/sections/Gallery';
 import WhyUs from '@/components/sections/WhyUs';
+import OwnerIntroduction from '@/components/sections/OwnerIntroduction';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/layout/Footer';
 import ShowroomMotion from '@/components/layout/ShowroomMotion';
@@ -21,5 +22,5 @@ export default function Home() {
     hasMap: STORE_INFO.mapUrl, openingHours: 'Mo-Su 08:00-20:00',
     ...(process.env.NEXT_PUBLIC_SITE_URL ? { url: process.env.NEXT_PUBLIC_SITE_URL } : {}),
   };
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\u003c') }} /><SmoothScroll><Navbar /><ShowroomMotion><main id="main-content"><Hero /><Transformation /><Products /><Gallery /><WhyUs /><Contact /></main><Footer /></ShowroomMotion></SmoothScroll></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\u003c') }} /><SmoothScroll><Navbar /><ShowroomMotion><main id="main-content"><Hero /><Transformation /><Products /><Gallery /><WhyUs /><OwnerIntroduction /><Contact /></main><Footer /></ShowroomMotion></SmoothScroll></>;
 }
