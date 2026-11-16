@@ -1,7 +1,35 @@
-﻿/* Only the transparent navigation over the hero changes colour. */
-.overHero { border-bottom: 1px solid #faf6f126; }
-.overHero a { color: #faf6f1; }
-.overHero a > span { color: inherit; }
-.overHero button > span { background-color: #faf6f1; }
-.overHero a:focus-visible, .overHero button:focus-visible { outline: 2px solid #faf6f1; outline-offset: 5px; }
-.overHero a:hover { color: #e9d7bc; }
+﻿.nav { position: fixed; inset: 0 0 auto; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 24px 5vw; gap: 30px; color: #f7f3ec; border-bottom: 1px solid #f7f3ec30; transition: background .35s, color .35s, padding .35s; }
+.brand { font-family: var(--font-playfair), Georgia, serif; font-size: 24px; letter-spacing: .02em; flex-shrink: 0; }
+.brand span { display: block; font-family: var(--font-inter), sans-serif; font-size: 9px; line-height: 1.8; text-transform: uppercase; letter-spacing: .14em; margin-top: 5px; }
+.links { display: flex; gap: 34px; }
+.links a { position: relative; font-size: 12px; padding: 10px 0; }
+.links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 2px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+.links a:hover::after, .links a[aria-current]::after { transform: scaleX(1); }
+.navCta { padding: 13px 20px; border: 1px solid #f7f3ec65; border-radius: 2px; font-size: 12px; }
+.navCta span { margin-left: 25px; }
+.navCta:hover { background: #f7f3ec; color: #702d39; }
+.scrolled { background: #f7f3ecf5; color: #242321; padding-top: 16px; padding-bottom: 16px; border-color: #2423211a; backdrop-filter: blur(12px); }
+.scrolled .navCta { color: #f7f3ec; background: #702d39; border-color: #702d39; }
+.menuToggle { display: none; min-height: 44px; padding: 8px 0 8px 14px; font-size: 12px; cursor: pointer; }
+.menuToggle span { margin-left: 12px; font-size: 16px; }
+.overlay { position: fixed; inset: 0; background: #24232166; z-index: 55; }
+.panel { position: fixed; inset: 0 0 0 auto; width: min(90vw, 500px); height: 100dvh; padding: 95px 30px 30px; background: #f7f3ec; color: #702d39; z-index: 60; transform: translateX(100%); overflow-y: auto; }
+.close { position: absolute; right: 30px; top: 25px; min-height: 44px; padding: 8px; cursor: pointer; font-size: 12px; }
+.menuEyebrow { font-size: 9px; text-transform: uppercase; letter-spacing: .12em; margin: 20px 0 28px; }
+.panel > a { display: flex; align-items: center; gap: 13px; border-bottom: 1px solid #702d3926; padding: 20px 0; font-family: var(--font-playfair), Georgia, serif; font-size: clamp(25px, 7vw, 35px); }
+.panel > a small { font: 10px var(--font-inter), sans-serif; color: #8d796a; }
+.panel > a span { margin-left: auto; font-size: 22px; }
+.menuContact { display: flex; flex-direction: column; gap: 10px; margin-top: 35px; font-size: 13px; }
+.menuContact span, .menuContact p { color: #7a685a; font-size: 11px; }
+.nav a:focus-visible, .nav button:focus-visible, .panel a:focus-visible, .panel button:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+@media (max-width: 999px) { .nav { padding: 18px 6vw; gap: 15px; } .brand { font-size: 22px; } .brand span { font-size: 8px; } .links, .navCta { display: none; } .menuToggle { display: block; } }
+@media (prefers-reduced-motion: reduce) { .nav, .links a::after { transition: none; } }
+.mobileActions { display: none; }
+@media (max-width: 700px) {
+  .mobileActions { display: grid; grid-template-columns: repeat(3, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; background: #f7f3ec; color: #702d39; border-top: 1px solid #702d3930; padding: 6px 3vw calc(6px + env(safe-area-inset-bottom)); transform: translateY(110%); visibility: hidden; transition: transform .3s, visibility .3s; }
+  .mobileActions[data-visible='true'] { transform: translateY(0); visibility: visible; }
+  .mobileActions a { min-height: 44px; display: grid; place-items: center; font-size: 11px; }
+  .mobileActions a + a { border-left: 1px solid #702d3920; }
+  .mobileActions a:focus-visible { outline: 2px solid currentColor; outline-offset: -3px; }
+}
+@media (prefers-reduced-motion: reduce) { .mobileActions { transition: none; } }

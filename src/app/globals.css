@@ -2,14 +2,14 @@
 
 /* Design System CSS Custom Properties */
 :root {
-  --color-cream: #FAF6F1;
+  --color-cream: #F7F3EC;
   --color-warm-white: #F5F0E8;
-  --color-burgundy: #722F37;
+  --color-burgundy: #702D39;
   --color-burgundy-dark: #5A252C;
-  --color-sage: #87A878;
+  --color-sage: #879B80;
   --color-sage-muted: #A3B899;
-  --color-terracotta: #C67B5C;
-  --color-charcoal: #2C2C2C;
+  --color-terracotta: #BB7358;
+  --color-charcoal: #242321;
   --color-charcoal-light: #4A4A4A;
   --color-stone: #B8AFA6;
 }
@@ -39,8 +39,8 @@ body {
 
 /* Selection color */
 ::selection {
-  background-color: #722F37;
-  color: #FAF6F1;
+  background-color: #702D39;
+  color: #F7F3EC;
 }
 
 /* Scrollbar styling */
@@ -49,7 +49,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAF6F1;
+  background: #F7F3EC;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -58,7 +58,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #722F37;
+  background: #702D39;
 }
 
 /* Lenis styles */
@@ -125,3 +125,7 @@ html.lenis, html.lenis body {
   margin-left: auto;
   margin-right: auto;
 }
+
+section[id] { scroll-margin-top: 88px; }
+a, button, input, summary { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }

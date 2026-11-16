@@ -1,165 +1,61 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ScrollReveal from '@/components/ui/ScrollReveal';
+﻿'use client';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import Image from 'next/image';
+import { COLOUR_STORIES } from '@/lib/showroom';
+import { NEROLAC } from '@/lib/constants';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-
-gsap.registerPlugin(ScrollTrigger);
-
-const GALLERY_ITEMS = [
-  {
-    id: 1,
-    title: 'Modern Living Room',
-    color: '#87A878',
-    accent: '#F5F0E8',
-    description: 'Sage green walls with natural light',
-  },
-  {
-    id: 2,
-    title: 'Cozy Bedroom Suite',
-    color: '#C67B5C',
-    accent: '#FAF6F1',
-    description: 'Warm terracotta for peaceful nights',
-  },
-  {
-    id: 3,
-    title: 'Elegant Dining Space',
-    color: '#722F37',
-    accent: '#F5F0E8',
-    description: 'Deep burgundy for intimate gatherings',
-  },
-  {
-    id: 4,
-    title: 'Minimal Home Office',
-    color: '#F5EBDC',
-    accent: '#2C2C2C',
-    description: 'Warm ivory for focused productivity',
-  },
-  {
-    id: 5,
-    title: 'Spa-inspired Bathroom',
-    color: '#7DAEA3',
-    accent: '#FAF6F1',
-    description: 'Cool eucalyptus for relaxation',
-  },
-  {
-    id: 6,
-    title: 'Bold Statement Entry',
-    color: '#2C3E50',
-    accent: '#FAF6F1',
-    description: 'Midnight navy for lasting impressions',
-  },
-];
+import styles from './showroom.module.css';
 
 export default function Gallery() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion();
+  const track = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion || !trackRef.current || !sectionRef.current) return;
-
-    const ctx = gsap.context(() => {
-      const track = trackRef.current!;
-      const totalScroll = () => Math.max(0, track.scrollWidth - sectionRef.current!.clientWidth);
-
-      gsap.to(track, {
-        x: () => -totalScroll(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: () => `+=${Math.max(1, totalScroll())}`,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
+    const element = track.current;
+    if (!element) return;
+    let frame = 0;
+    const update = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const first = element.firstElementChild as HTMLElement | null;
+        if (!first) return;
+        const step = first.offsetWidth + parseFloat(getComputedStyle(element).columnGap || '0');
+        setActive(Math.max(0, Math.min(COLOUR_STORIES.length - 1, Math.round(element.scrollLeft / step))));
       });
-    }, sectionRef);
+    };
+    const resize = new ResizeObserver(update);
+    resize.observe(element);
+    element.addEventListener('scroll', update, { passive: true });
+    return () => { cancelAnimationFrame(frame); resize.disconnect(); element.removeEventListener('scroll', update); };
+  }, []);
 
-    return () => ctx.revert();
-  }, [prefersReducedMotion]);
+  function goTo(index: number) {
+    const element = track.current;
+    if (!element) return;
+    const target = element.children[Math.max(0, Math.min(index, COLOUR_STORIES.length - 1))] as HTMLElement;
+    const padding = parseFloat(getComputedStyle(element).paddingLeft);
+    element.scrollTo({ left: target.offsetLeft - padding, behavior: reducedMotion ? 'instant' : 'smooth' });
+  }
+  function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.target !== event.currentTarget) return;
+    const index = event.key === 'ArrowRight' ? active + 1 : event.key === 'ArrowLeft' ? active - 1 : event.key === 'Home' ? 0 : event.key === 'End' ? COLOUR_STORIES.length - 1 : null;
+    if (index !== null) { event.preventDefault(); goTo(index); }
+  }
 
   return (
-    <section
-      id="gallery"
-      ref={sectionRef}
-      className="relative overflow-hidden bg-[#2C2C2C]"
-    >
-      {/* Section intro (always visible) */}
-      <div className="relative z-10 pt-24 md:pt-32 pl-6 md:pl-12 lg:pl-24 pb-12">
-        <ScrollReveal>
-          <span className="text-xs tracking-[0.25em] uppercase text-[#B8AFA6] mb-4 block">
-            Inspiration
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#FAF6F1] mb-4">
-            Interior Inspiration
-          </h2>
-          <p className="text-[#B8AFA6] text-lg max-w-md">
-            Scroll through curated spaces — each one brought to life by the right shade of paint.
-          </p>
-        </ScrollReveal>
+    <section id="room-explorer" className={styles.stories} aria-labelledby="stories-title">
+      <div id="gallery" className={styles.anchor} />
+      <div className={styles.sectionTop}><p className={styles.eyebrow}>03 / Colour stories</p><span className={styles.smallNote}>A little inspiration goes a long way.</span></div>
+      <div className={styles.sectionHeading}><h2 id="stories-title" data-editorial-title>Not just a shade.<br /><em>A state of mind.</em></h2><div className={styles.galleryArrows}><span aria-live="polite">0{active + 1} <small>/ 0{COLOUR_STORIES.length}</small></span><div><button type="button" onClick={() => goTo(active - 1)} disabled={active === 0} aria-label="Previous colour story">←</button><button type="button" onClick={() => goTo(active + 1)} disabled={active === COLOUR_STORIES.length - 1} aria-label="Next colour story">→</button></div></div></div>
+      <div ref={track} className={styles.storyTrack} onKeyDown={onKeyDown} tabIndex={0} role="region" aria-label="Colour inspiration gallery. Swipe or use arrow keys to explore." data-lenis-prevent>
+        {COLOUR_STORIES.map((story, index) => <article className={styles.story} key={story.mood} aria-label={`${index + 1} of ${COLOUR_STORIES.length}: ${story.title}`}>
+          <div className={styles.storyImage} data-story-image><Image src={story.image} alt={story.alt} fill sizes="(max-width: 800px) 86vw, 65vw" style={{ objectPosition: index === 0 ? '32% center' : index === 2 ? '65% center' : '48% center' }} /></div>
+          <div className={styles.storyScrim} /><div className={styles.storyContent}><p>{story.mood}</p><h3>{story.title}</h3><span>{story.text}</span><div className={styles.storyPalette} aria-label="Illustrative palette">{story.palette.map(color => <i key={color} style={{ background: color }} aria-label={color} />)}</div></div>
+        </article>)}
       </div>
-
-      {/* Horizontal scroll track */}
-      <div
-        ref={trackRef}
-        className={`flex gap-6 md:gap-8 px-6 md:px-12 lg:px-24 pb-24 md:pb-32 ${
-          prefersReducedMotion ? 'overflow-x-auto snap-x snap-mandatory' : ''
-        }`}
-        style={prefersReducedMotion ? {} : { width: 'max-content' }}
-      >
-        {GALLERY_ITEMS.map((item) => (
-          <div
-            key={item.id}
-            className={`relative flex-shrink-0 w-[80vw] md:w-[50vw] lg:w-[35vw] h-[60vh] md:h-[65vh] rounded-2xl overflow-hidden group ${
-              prefersReducedMotion ? 'snap-center' : ''
-            }`}
-          >
-            {/* Gradient background (placeholder for photos) */}
-            <div
-              className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
-              style={{
-                background: `linear-gradient(160deg, ${item.color}ee 0%, ${item.color} 50%, ${item.color}cc 100%)`,
-              }}
-            />
-
-            {/* Decorative interior elements */}
-            <div className="absolute inset-0 flex items-end justify-center opacity-10 pointer-events-none">
-              {/* Simple geometric room suggestion */}
-              <div className="w-3/4 h-2/3 border-t-2 border-l-2 border-r-2 border-white/30 rounded-t-lg" />
-            </div>
-
-            {/* Content overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-              <span className="text-xs tracking-[0.2em] uppercase text-white/60 mb-2 block font-accent">
-                0{item.id}
-              </span>
-              <h3 className="font-display text-2xl md:text-3xl text-white mb-2">
-                {item.title}
-              </h3>
-              <p className="text-white/70 text-sm">
-                {item.description}
-              </p>
-            </div>
-
-            {/* Color swatch indicator */}
-            <div className="absolute top-6 right-6 flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1.5">
-              <div
-                className="w-4 h-4 rounded-full border border-white/30"
-                style={{ backgroundColor: item.color }}
-              />
-              <span className="text-[10px] font-mono text-white/70 uppercase">
-                {item.color}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
+      <div className={styles.galleryPagination} role="group" aria-label="Choose a colour story">{COLOUR_STORIES.map((story, index) => <button key={story.mood} type="button" aria-label={`Show ${story.mood}`} aria-pressed={active === index} onClick={() => goTo(index)}><span /></button>)}</div>
+      <div className={styles.storyBottom}><p>Curated inspiration. Screen colours are approximate.<br />Match your choice to a physical shade card in store.</p><div><a className={styles.lightLink} href={NEROLAC.catalogue} target="_blank" rel="noreferrer">Explore Nerolac shades ↗</a><a className={styles.lightLink} href={NEROLAC.visualizer} target="_blank" rel="noreferrer">Try Nerolac’s visualizer ↗</a></div></div>
     </section>
   );
 }

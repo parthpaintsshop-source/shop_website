@@ -5,6 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import MagneticButton from '@/components/ui/MagneticButton';
 import styles from './hero.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -61,21 +62,22 @@ export default function Hero() {
         <div data-image-shade className={styles.shade} />
       </div>
       <div data-hero-copy className={styles.copy}>
-        <p data-hero-detail className={styles.kicker}><span className={styles.rule} aria-hidden="true" />A new perspective on colour</p>
+        <p data-hero-detail className={styles.kicker}><span className={styles.rule} aria-hidden="true" />Parth Paints · Authorized Nerolac Dealer</p>
         <h1 id="hero-title" className={styles.title}>
-          <span className={styles.line}><span data-headline>Colour,</span></span>
-          <span className={styles.line}><span data-headline className={styles.italic}>with feeling.</span></span>
+          <span className={styles.line}><span data-headline>A little colour.</span></span>
+          <span className={styles.line}><span data-headline>A whole new</span></span>
+          <span className={styles.line}><span data-headline className={styles.italic}>feeling.</span></span>
         </h1>
         <div className={styles.lowerCopy}>
-          <p data-hero-detail className={styles.description}>The right shade changes everything.<br />Discover a palette that feels like you.</p>
+          <p data-hero-detail className={styles.description}>For the home you imagine.<br />Discover Nerolac paints at Parth Paints, Aspur.</p>
           <div data-hero-actions className={styles.actions}>
-            <a href="#room-explorer" className={styles.primary}>Find your colour <span aria-hidden="true">↗</span></a>
+            <MagneticButton as="a" href="#products" className={styles.primary}>Explore the collections <span aria-hidden="true">↗</span></MagneticButton>
             <a href="#contact" className={styles.secondary}>Visit Parth Paints <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </div>
       <div className={styles.footer}>
-        <a href="#room-explorer" className={styles.scroll}><span className={styles.scrollTrack} aria-hidden="true" />Scroll to explore colours</a>
+        <a href="#transformation" className={styles.scroll}><span className={styles.scrollTrack} aria-hidden="true" />Scroll into possibility</a>
         <p className={styles.dealer}>Parth Paints<span>Authorized Nerolac Dealer</span></p>
         <div className={styles.palette} aria-hidden="true"><i /><i /><i /><span>Spaces. Reimagined.</span></div>
       </div>

@@ -26,9 +26,15 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
+      anchors: { offset: -88 },
     });
 
     lenisRef.current = lenis;
+    const handleMenu = (event: Event) => {
+      if ((event as CustomEvent<boolean>).detail) lenis.stop();
+      else lenis.start();
+    };
+    window.addEventListener('parth:menu', handleMenu);
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -45,6 +51,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         gsap.ticker.remove(rafCallbackRef.current);
       }
       lenis.destroy();
+      window.removeEventListener('parth:menu', handleMenu);
       lenisRef.current = null;
     };
   }, [prefersReducedMotion]);

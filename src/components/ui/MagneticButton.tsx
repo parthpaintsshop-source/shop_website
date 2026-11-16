@@ -32,8 +32,8 @@ export default function MagneticButton({
     const x = e.clientX - left - width / 2;
     const y = e.clientY - top - height / 2;
     gsap.to(ref.current, {
-      x: x * 0.3,
-      y: y * 0.3,
+      x: x * 0.12,
+      y: y * 0.12,
       duration: 0.4,
       ease: 'power2.out',
     });
@@ -45,7 +45,7 @@ export default function MagneticButton({
       x: 0,
       y: 0,
       duration: 0.7,
-      ease: 'elastic.out(1, 0.3)',
+      ease: 'power3.out',
     });
   };
 

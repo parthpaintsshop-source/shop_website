@@ -23,10 +23,16 @@ const cormorant = Cormorant_Garamond({
   display: 'swap',
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const title = 'Parth Paints, Aspur | Authorized Nerolac Dealer';
+const description = 'Discover Nerolac paint collections and colour inspiration at Parth Paints, opposite Nice Marble in Aspur, Dungarpur. Open every day, 8 AM to 8 PM. Call +91 63772 23181.';
 export const metadata: Metadata = {
-  title: 'Parth Paints — Authorized Nerolac Dealer',
-  description:
-    'Your trusted destination for premium Nerolac paint solutions, expert color consultation, and computerized tinting. Transform your space with the perfect palette.',
+  ...(siteUrl ? { metadataBase: new URL(siteUrl), alternates: { canonical: '/' } } : {}),
+  title, description,
+  openGraph: { title, description, siteName: 'Parth Paints', locale: 'en_IN', type: 'website',
+    ...(siteUrl ? { images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: 'Parth Paints - Authorized Nerolac Dealer, Aspur' }] } : {}),
+  },
+  twitter: { card: 'summary_large_image', title, description, ...(siteUrl ? { images: ['/opengraph.jpg'] } : {}) },
 };
 
 export default function RootLayout({
@@ -47,7 +53,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <main id="main-content">{children}</main>
+        {children}
       </body>
     </html>
   );

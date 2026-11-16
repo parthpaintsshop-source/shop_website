@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# Parth Paints — digital showroom
 
-## Getting Started
+Existing Next.js 16.4.6 / React 19 / TypeScript / Tailwind 4 application, with GSAP and Lenis. The site advertises the physical Parth Paints store in Aspur, Dungarpur; it is not an online shop or a replica of Nerolac's catalogue.
 
-First, run the development server:
+## Develop and check
 
-```bash
+```sh
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npx tsc --noEmit
+npm run build
+node scripts/check-hero-build.mjs
+node scripts/check-showroom.mjs
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+On Windows PowerShell with blocked npm.ps1, use `npm.cmd` / `npx.cmd`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Homepage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Hero → photographic paint transformation → collection browser → colour stories → store identity → contact/map → footer. The former `/color-studio-preview` URL redirects to `/#room-explorer`.
 
-## Learn More
+Business information lives in `src/lib/constants.ts`. Product category and inspiration content live in `src/lib/showroom.ts`. Contact details and daily 8 AM–8 PM hours were supplied by the owner on 16 November 2026. WhatsApp uses the first supplied number, 6377223181. No testimonials, experience statistics, free-service claims or stock guarantees are published.
 
-To learn more about Next.js, take a look at the following resources:
+Set `NEXT_PUBLIC_SITE_URL` to the real production origin before deployment. Canonical and absolute social-image URLs are enabled only when it is supplied. The 1200 × 630 social image is ready at `public/opengraph.jpg`; no production domain is invented.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Motion and assets
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Hero uses separate entrance-mask, image-expansion and parallax wrappers.
+- Transformation uses a registered before/after pair with paint restricted to two traced wall planes. Desktop pinning is limited to 65% of a viewport; mobile/short screens use unpinned scrolling. A manual comparison control is available.
+- Collection images reveal and change with the selected category. The inspiration track uses native horizontal scroll, keyboard focus, swipe and previous/next controls.
+- All essential text and images are visible in prerendered HTML. Reduced motion bypasses GSAP and magnetic movement.
+- Sources and image-use limitations are documented in [docs/SHOWROOM-REDESIGN.md](docs/SHOWROOM-REDESIGN.md).
+- Rebuild the photographic colour pair using `node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/build-transformation.mjs` on Node 22.18+/24+. The helper runs mask registration and protected-surface checks before output.
 
-## Deploy on Vercel
+## Local recovery
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Branch: `redesign/premium-showroom`. Checkpoint `7035240` preserves the complete pre-redesign project. The former Color Studio, screenshots, source images and data can be recovered from that checkpoint. Current changes are left reviewable in the working tree.

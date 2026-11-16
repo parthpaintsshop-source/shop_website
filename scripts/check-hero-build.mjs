@@ -15,10 +15,10 @@ for (const suffix of ['hero', 'title', 'imageMask', 'image', 'actions']) {
 }
 assert.doesNotMatch(hero, /style="[^"]*(?:opacity:\s*0(?:;|")|visibility:\s*hidden)/,
   'Hero content must be visible before JavaScript initializes');
-assert.match(hero, /href="#room-explorer"/);
+assert.match(hero, /href="#products"/);
 assert.match(hero, /href="#contact"/);
 assert.match(hero, /Authorized Nerolac Dealer/);
-assert.match(css, /font-size:clamp\(90px,10\.3vw,170px\)/);
+assert.match(css, /font-size:clamp\(74px,8\.4vw,136px\)/);
 assert.match(css, /prefers-reduced-motion/);
 assert.match(css, /@font-face/);
 assert.ok(readdirSync('.next/static/media').some(name => name.endsWith('.woff2')));

@@ -1,92 +1,33 @@
-'use client';
-
-import { PRODUCT_CATEGORIES } from '@/lib/constants';
-import ScrollReveal from '@/components/ui/ScrollReveal';
-import MagneticButton from '@/components/ui/MagneticButton';
+﻿'use client';
+import { useState } from 'react';
+import Image from 'next/image';
+import { COLLECTIONS } from '@/lib/showroom';
+import { inquiryHref, NEROLAC } from '@/lib/constants';
+import styles from './showroom.module.css';
 
 export default function Products() {
+  const [active, setActive] = useState(0);
+  const [loaded, setLoaded] = useState<number[]>([]);
+  const collection = COLLECTIONS[active];
+  const displayed = loaded.includes(active) ? active : 0;
   return (
-    <section id="products" className="section-padding bg-[#FAF6F1]">
-      <div className="container-wide">
-        {/* Section Header */}
-        <ScrollReveal>
-          <div className="text-center mb-16 md:mb-20">
-            <span className="text-xs tracking-[0.25em] uppercase text-[#B8AFA6] mb-4 block">
-              Nerolac Range
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#2C2C2C] mb-6">
-              Product Categories
-            </h2>
-            <p className="text-[#4A4A4A] text-lg max-w-lg mx-auto">
-              Explore the full range of Nerolac paints — from premium interiors
-              to advanced waterproofing solutions.
-            </p>
-          </div>
-        </ScrollReveal>
-
-        {/* Product Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {PRODUCT_CATEGORIES.map((category, index) => (
-            <ScrollReveal key={category.id} delay={index * 0.1}>
-              <div className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500">
-                {/* Card gradient background (placeholder for real photography) */}
-                <div
-                  className="relative h-64 md:h-72 overflow-hidden"
-                  style={{
-                    background: `linear-gradient(135deg, ${category.colors[0]} 0%, ${category.colors[1]} 30%, ${category.colors[2]} 60%, ${category.colors[3]}40 100%)`,
-                  }}
-                >
-                  {/* Decorative shapes */}
-                  <div
-                    className="absolute top-8 right-8 w-24 h-24 rounded-full opacity-20"
-                    style={{ backgroundColor: category.colors[3] }}
-                  />
-                  <div
-                    className="absolute bottom-12 left-12 w-16 h-16 rounded-lg opacity-15 rotate-12"
-                    style={{ backgroundColor: category.colors[4] || category.colors[2] }}
-                  />
-
-                  {/* Category label overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent pt-16 pb-6 px-8">
-                    <h3 className="font-display text-2xl md:text-3xl text-white">
-                      {category.title}
-                    </h3>
-                  </div>
-
-                  {/* Hover zoom effect on the gradient */}
-                  <div className="absolute inset-0 group-hover:scale-105 transition-transform duration-700 ease-out" />
-                </div>
-
-                {/* Card body */}
-                <div className="p-6 md:p-8">
-                  <p className="text-[#4A4A4A] text-sm leading-relaxed mb-6">
-                    {category.description}
-                  </p>
-
-                  {/* Color dots */}
-                  <div className="flex items-center gap-2 mb-6">
-                    {category.colors.map((color, i) => (
-                      <div
-                        key={i}
-                        className="w-6 h-6 rounded-full border border-black/5"
-                        style={{ backgroundColor: color }}
-                        title={color}
-                      />
-                    ))}
-                  </div>
-
-                  <MagneticButton as="a" href="#contact">
-                    <span className="inline-flex items-center gap-2 text-sm text-[#722F37] font-medium group-hover:gap-3 transition-all duration-300">
-                      Learn More
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                      </svg>
-                    </span>
-                  </MagneticButton>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
+    <section id="products" className={styles.collections} aria-labelledby="collections-title">
+      <div className={styles.sectionTop}><p className={styles.eyebrow}>02 / The Nerolac collections</p><span className={styles.smallNote}>For the room. For the home. For what comes next.</span></div>
+      <div className={styles.sectionHeading}><h2 id="collections-title" data-editorial-title>A finish for every<br /><em>new beginning.</em></h2><p>Discover your starting point.<br />Ask Parth Paints about current stock and suitable products.</p></div>
+      <div className={styles.collectionLayout}>
+        <figure className={styles.collectionVisual} data-image-reveal>
+          {COLLECTIONS.map((item, index) => <div key={item.id} className={styles.collectionLayer} data-current={displayed === index} aria-hidden={displayed !== index}>
+            <Image src={item.image} alt={item.alt} fill sizes="(max-width: 800px) 90vw, 48vw" className={styles.collectionPhoto}
+              onLoad={() => setLoaded(previous => previous.includes(index) ? previous : [...previous, index])} />
+          </div>)}
+          <figcaption>{COLLECTIONS[displayed].caption}</figcaption><span className={styles.visualNumber}>0{displayed + 1}<small>/ 05</small></span>
+        </figure>
+        <div className={styles.collectionList}>
+          {COLLECTIONS.map((item, index) => <button key={item.id} type="button" onClick={() => setActive(index)} aria-pressed={active === index} aria-controls="collection-description" className={styles.collectionRow}>
+            <span className={styles.rowNumber}>0{index + 1}</span><span><strong>{item.title}</strong><small>{item.note}</small></span><span className={styles.rowArrow} aria-hidden="true">↗</span>
+          </button>)}
+          <div id="collection-description" className={styles.collectionDetail} aria-live="polite"><p>{collection.description}</p><a className={styles.textLink} href={inquiryHref(collection.title)}>Ask about {collection.title.toLowerCase()} <span aria-hidden="true">↗</span></a></div>
+          <p className={styles.finePrint}>Collections shown for discovery. Store availability and product suitability require confirmation. <a href={NEROLAC.website} target="_blank" rel="noreferrer">Official Nerolac product information ↗</a></p>
         </div>
       </div>
     </section>

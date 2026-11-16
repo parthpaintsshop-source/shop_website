@@ -1,0 +1,100 @@
+﻿.eyebrow { font-size: 10px; line-height: 1.8; text-transform: uppercase; letter-spacing: .17em; }
+.about { padding: 80px 6vw 85px; background: #f7f3ec; color: #242321; display: grid; grid-template-columns: 1.05fr 1fr; gap: 7vw; align-items: center; }
+.aboutFigure { min-width: 0; margin: 0; }
+.figureTop { display: flex; align-items: baseline; justify-content: space-between; gap: 15px; padding-bottom: 16px; border-bottom: 1px solid #702d392c; margin-bottom: 16px; color: #702d39; }
+.figureTop > span { font: 24px var(--font-playfair), Georgia, serif; }
+.figureTop small { font-size: 9px; text-transform: uppercase; letter-spacing: .11em; }
+.aboutImage { position: relative; aspect-ratio: 5/4; overflow: hidden; background: #d8c5ad; }
+.aboutImage img { object-fit: cover; object-position: 32% center; }
+.aboutFigure figcaption { margin-top: 12px; color: #786b5e; font-size: 9px; line-height: 1.7; }
+.aboutCopy .eyebrow { color: #702d39; margin-bottom: 22px; }
+.aboutCopy h2 { font: 400 clamp(43px, 4.6vw, 72px)/1.04 var(--font-playfair), Georgia, serif; letter-spacing: -.05em; }
+.aboutCopy h2 em { font-family: var(--font-cormorant), Georgia, serif; color: #702d39; font-weight: 400; }
+.aboutDescription { font-size: 14px; line-height: 1.9; color: #695d52; margin: 25px 0; max-width: 450px; }
+.storeProof { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; border-top: 1px solid #24232124; border-bottom: 1px solid #24232124; padding: 20px 0; }
+.storeProof p { font-size: 12px; line-height: 1.7; }
+.storeProof span { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 7px; color: #8b7462; }
+.aboutNote { color: #786b5e; font-size: 12px; line-height: 1.8; margin: 20px 0 10px; }
+.darkLink { display: inline-flex; justify-content: space-between; align-items: center; gap: 25px; min-height: 44px; font-size: 12px; color: #702d39; border-bottom: 1px solid #702d3970; }
+.darkLink span { transition: transform .25s; }
+.darkLink:hover span { transform: translate(3px,-3px); }
+.invitation { min-height: 100svh; padding: 38px 6vw 28px; background: #702d39; color: #f7f3ec; overflow: hidden; }
+.invitationTop { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding-bottom: 20px; border-bottom: 1px solid #f7f3ec35; }
+.invitationTop .eyebrow { color: #e8cdbf; }
+.invitationTop > span { font-size: 10px; color: #e8cdbf; line-height: 1.7; }
+.invitationGrid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5vw; align-items: center; padding-top: 42px; }
+.invitationCopy { position: relative; z-index: 1; }
+.invitationCopy h2 { font: 400 clamp(64px, 7.3vw, 115px)/.94 var(--font-playfair), Georgia, serif; letter-spacing: -.06em; margin-left: -.04em; }
+.lineMask { display: block; overflow: hidden; padding: 0 .12em .23em .04em; margin-bottom: -.2em; }
+.lineMask > span, .lineMask > em { display: block; }
+.lineMask > em { font-family: var(--font-cormorant), Georgia, serif; color: #e6ceb5; font-weight: 400; letter-spacing: -.05em; }
+.invitationCopy > p:not(.visitAddress) { font-size: 13px; line-height: 1.9; color: #f0dbcf; margin: 28px 0 24px; }
+.invitationActions { display: flex; flex-wrap: wrap; gap: 12px; }
+.buttonLight, .buttonOutline { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 50px; padding: 14px 19px; border: 1px solid #f7f3ec70; font-size: 12px; line-height: 1.7; transition: background .25s, color .25s; }
+.buttonLight { background: #f7f3ec; color: #702d39; border-color: #f7f3ec; }
+.buttonLight:hover { background: #e6ceb5; border-color: #e6ceb5; }
+.buttonOutline:hover { background: #f7f3ec; color: #702d39; }
+.visitAddress { font-size: 10px; line-height: 1.9; color: #dfbfb0; margin-top: 24px; }
+.invitationFigure { position: relative; margin: 0; padding-right: 17px; }
+.closingFrame { position: relative; overflow: hidden; height: clamp(420px, 60svh, 680px); background: #aa8d76; }
+.closingFrame img { object-fit: cover; object-position: center; }
+.invitationFigure figcaption { font-size: 9px; line-height: 1.8; color: #dfbfb0; padding-top: 10px; }
+.colourAccents { position: absolute; right: -8px; bottom: 70px; width: 68px; height: 110px; pointer-events: none; }
+.colourAccents i { display: block; position: absolute; width: 46px; height: 68px; border: 1px solid #fff5; box-shadow: 0 3px 10px #25151930; }
+.colourAccents i:nth-child(1) { background: #d8c5ad; left: 0; top: 0; rotate: -8deg; }
+.colourAccents i:nth-child(2) { background: #879b80; left: 14px; top: 22px; rotate: 5deg; }
+.colourAccents i:nth-child(3) { background: #bb7358; left: 4px; top: 44px; rotate: -3deg; }
+.wordmarkMask { overflow: hidden; margin-top: 24px; border-bottom: 1px solid #f7f3ec35; }
+.wordmark { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; font: 400 clamp(75px, 12.5vw, 210px)/1.2 var(--font-playfair), Georgia, serif; letter-spacing: -.075em; padding-bottom: 15px; }
+.wordmark > span { font: .4em var(--font-inter), sans-serif; }
+.invitationSignature { display: flex; justify-content: space-between; gap: 25px; padding-top: 20px; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: #e8cdbf; line-height: 1.8; }
+.footer { padding: 38px 6vw 23px; background: #f0e8dd; color: #4c3934; }
+.footerGrid { display: grid; grid-template-columns: 1.25fr 1.15fr .85fr .8fr; gap: 30px; }
+.footerGrid > div, .footerGrid > nav { display: flex; flex-direction: column; align-items: start; gap: 9px; min-width: 0; }
+.footerBrand { color: #702d39; font: 24px var(--font-playfair), Georgia, serif; margin-bottom: 3px; }
+.footerGrid h2 { font-size: 9px; letter-spacing: .13em; text-transform: uppercase; font-weight: 400; color: #8b7462; margin-bottom: 7px; }
+.footerGrid p, .footerGrid a:not(.footerBrand), .mapDetails { font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; }
+.footerGrid strong { font-weight: 500; }
+.footerGrid a, .footerLegal a { text-underline-offset: 4px; }
+.footerGrid a:hover, .footerLegal a:hover { text-decoration: underline; }
+.mapDetails { width: 100%; }
+.mapDetails summary { cursor: pointer; padding: 3px 0; }
+.mapDetails iframe { display: block; width: 100%; height: 230px; margin-top: 12px; border: 0; }
+.footerLegal { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid #702d3926; margin-top: 28px; padding-top: 19px; font-size: 9px; line-height: 1.8; }
+.about a:focus-visible, .invitation a:focus-visible, .footer :is(a,summary):focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+@media (min-width: 1700px) { .about, .invitation, .footer { padding-left: max(6vw, calc((100vw - 1500px)/2)); padding-right: max(6vw, calc((100vw - 1500px)/2)); } }
+@media (max-width: 1050px) { .about { gap: 5vw; padding-top: 65px; padding-bottom: 65px; } .aboutImage { aspect-ratio: 4/5; } .invitationCopy h2 { font-size: clamp(60px, 7.3vw, 80px); } .invitationGrid { gap: 3vw; } .buttonLight, .buttonOutline { gap: 14px; font-size: 11px; padding-left: 14px; padding-right: 14px; } .footerGrid { grid-template-columns: 1.2fr 1fr 1fr; } .footerGrid > nav { grid-column: 1/-1; flex-direction: row; flex-wrap: wrap; gap: 20px; padding-top: 12px; border-top: 1px solid #702d3920; } }
+@media (max-width: 760px) {
+  .about { grid-template-columns: 1fr; padding: 60px 6vw; gap: 35px; }
+  .aboutCopy { grid-row: 1; }
+  .aboutCopy h2 { font-size: clamp(44px, 10vw, 64px); }
+  .aboutDescription { font-size: 13px; margin: 20px 0; }
+  .aboutImage { aspect-ratio: 5/4; }
+  .aboutFigure figcaption { font-size: 8px; }
+  .invitation { padding: 30px 6vw 25px; }
+  .invitationTop { align-items: start; gap: 15px; }
+  .invitationTop > span { max-width: 140px; text-align: right; font-size: 9px; }
+  .invitationGrid { grid-template-columns: 1fr; gap: 35px; padding-top: 38px; }
+  .invitationCopy h2 { font-size: clamp(60px, 15vw, 100px); }
+  .invitationCopy > p:not(.visitAddress) { font-size: 13px; margin: 23px 0; }
+  .invitationActions { gap: 10px; }
+  .buttonLight, .buttonOutline { padding: 14px 15px; gap: 16px; font-size: 11px; }
+  .visitAddress { margin-top: 20px; }
+  .invitationFigure { width: 82%; margin-left: auto; padding-right: 10px; }
+  .closingFrame { height: 390px; min-height: 0; }
+  .colourAccents { scale: .8; right: -18px; bottom: 50px; }
+  .wordmarkMask { margin-top: 28px; }
+  .wordmark { font-size: clamp(56px, 12.3vw, 90px); gap: 10px; padding-bottom: 18px; }
+  .invitationSignature { gap: 15px; padding-top: 15px; font-size: 8px; }
+  .invitationSignature > span { max-width: 155px; }
+  .invitationSignature > span:last-child { text-align: right; }
+  .footer { padding: 30px 6vw 90px; }
+  .footerGrid { grid-template-columns: 1fr 1fr; gap: 28px 22px; }
+  .footerGrid > nav { grid-column: auto; border: 0; padding: 0; flex-direction: column; gap: 9px; }
+  .footerGrid p, .footerGrid a:not(.footerBrand) { font-size: 11px; }
+  .footerBrand { font-size: 22px; }
+  .footerLegal { flex-wrap: wrap; gap: 12px; font-size: 8px; }
+  .footerLegal > span { display: none; }
+}
+@media (max-width: 360px) { .invitationCopy h2 { font-size: 53px; } .wordmark { font-size: 49px; } .storeProof { gap: 13px; } .storeProof p { font-size: 11px; } .invitationFigure { width: 90%; } }
+@media (prefers-reduced-motion: reduce) { .darkLink span, .buttonLight, .buttonOutline { transition: none; } }
