@@ -1,5 +1,6 @@
 ﻿'use client';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { NAV_LINKS, STORE_INFO, inquiryHref } from '@/lib/constants';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
@@ -71,7 +72,10 @@ export default function Navbar() {
 
   return (<>
     <nav ref={nav} className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} aria-label="Main navigation">
-      <a className={styles.brand} href="#home">Parth Paints<span>{STORE_INFO.tagline}</span></a>
+      <a className={styles.brand} href="#home" aria-label="Parth Paints home">
+        <Image className={styles.logo} src="/images/logo.png" alt="" width={52} height={52} priority />
+        <span className={styles.brandCopy}>Parth Paints<span className={styles.slogan}>Trusted to Quality</span><span className={styles.dealer}>{STORE_INFO.tagline}</span></span>
+      </a>
       <div className={styles.links}>{NAV_LINKS.map(link => <a key={link.href} href={link.href} aria-current={active === link.href ? 'location' : undefined}>{link.label}</a>)}</div>
       <a href={inquiryHref('my painting project')} className={styles.navCta} target="_blank" rel="noreferrer">Let’s talk colour <span aria-hidden="true">↗</span></a>
       <button ref={toggle} type="button" className={styles.menuToggle} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>Menu <span aria-hidden="true">☰</span></button>
